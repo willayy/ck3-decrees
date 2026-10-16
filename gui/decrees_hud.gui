@@ -1,0 +1,56 @@
+widget = {
+	name = "decrees_hud_widget"
+	parentanchor = top|right
+	position = { -48 48 }
+	size = { 45 45 }
+	layer = top
+	visible = "[And(Not(IsPauseMenuShown), GetPlayer.IsValid)]"
+
+	using = Animation_ShowHide_Quick
+
+	button_normal = {
+		parentanchor = center
+		size = { 45 45 }
+		texture = "gfx/decrees_icon.png"
+		tooltip = "DECREES_BUTTON"
+		using = tooltip_ws
+
+		modify_texture = {
+			name = "glow"
+			texture = "gfx/interface/component_effects/effect_shimmer.dds"
+			blend_mode = colordodge
+			translate_uv = { 1 0 }
+			alpha = 0
+		}
+
+		state = {
+			name = _mouse_enter
+			duration = 0.03
+			scale = 1.2
+			position_x = -3
+
+			using = Animation_Curve_Default
+
+			modify_texture = {
+				name = "glow"
+				translate_uv = { 0 0 }
+				alpha = 0.4
+			}
+		}
+
+		state = {
+			name = _mouse_leave
+			duration = 0.1
+			scale = 1
+			position_x = 0
+
+			using = Animation_Curve_Default
+
+			modify_texture = {
+				name = "glow"
+				translate_uv = { 1 0 }
+				alpha = 0
+			}
+		}
+	}
+}
