@@ -1,0 +1,332 @@
+window = {
+	name = "decree_editor_window"
+	parentanchor = center
+	size = { 960 640 }
+	layer = top
+	visible = "[GetVariableSystem.Exists('decree_editor_open')]"
+
+	using = Window_Background_Subwindow
+	using = Window_Decoration
+
+	state = {
+		name = _show
+		using = Animation_FadeIn_Quick
+	}
+
+	state = {
+		name = _hide
+		using = Animation_FadeOut_Quick
+	}
+
+	vbox = {
+		margin = { 16 14 }
+		spacing = 10
+
+		header_pattern = {
+			layoutpolicy_horizontal = expanding
+
+			blockoverride "header_text"
+			{
+				text = "DECREE_EDITOR_TITLE"
+			}
+
+			blockoverride "button_close"
+			{
+				onclick = "[GetVariableSystem.Clear('decree_editor_open')]"
+				onclick = "[GetVariableSystem.Clear('decrees_window_open')]"
+			}
+
+			button_standard = {
+				position = { 10 6 }
+				size = { 150 30 }
+				text = "DECREE_BACK_TO_LIST"
+				onclick = "[GetVariableSystem.Clear('decree_editor_open')]"
+				onclick = "[GetVariableSystem.Set('decrees_window_open', 'yes')]"
+			}
+		}
+
+		hbox = {
+			layoutpolicy_horizontal = expanding
+			margin = { 10 4 }
+			spacing = 20
+
+			text_single = {
+				text = "Interval:"
+				align = left|nobaseline
+				using = Font_Size_Medium
+				default_format = "#low"
+			}
+
+			hbox = {
+				spacing = 6
+
+				button_checkbox = {
+					size = { 20 20 }
+					checked = "[GetVariableSystem.HasValue('decree_interval', 'daily')]"
+					onclick = "[GetVariableSystem.Set('decree_interval', 'daily')]"
+				}
+
+				text_single = {
+					text = "DECREE_INTERVAL_DAILY"
+					align = left|nobaseline
+				}
+			}
+
+			hbox = {
+				spacing = 6
+
+				button_checkbox = {
+					size = { 20 20 }
+					checked = "[GetVariableSystem.HasValue('decree_interval', 'weekly')]"
+					onclick = "[GetVariableSystem.Set('decree_interval', 'weekly')]"
+				}
+
+				text_single = {
+					text = "DECREE_INTERVAL_WEEKLY"
+					align = left|nobaseline
+				}
+			}
+
+			hbox = {
+				spacing = 6
+
+				button_checkbox = {
+					size = { 20 20 }
+					checked = "[GetVariableSystem.HasValue('decree_interval', 'monthly')]"
+					onclick = "[GetVariableSystem.Set('decree_interval', 'monthly')]"
+				}
+
+				text_single = {
+					text = "DECREE_INTERVAL_MONTHLY"
+					align = left|nobaseline
+				}
+			}
+
+			hbox = {
+				spacing = 6
+
+				button_checkbox = {
+					size = { 20 20 }
+					checked = "[GetVariableSystem.HasValue('decree_interval', 'yearly')]"
+					onclick = "[GetVariableSystem.Set('decree_interval', 'yearly')]"
+				}
+
+				text_single = {
+					text = "DECREE_INTERVAL_YEARLY"
+					align = left|nobaseline
+				}
+			}
+
+			expand = {}
+		}
+
+		vbox = {
+			layoutpolicy_horizontal = expanding
+			spacing = 6
+
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				spacing = 6
+
+				button_standard = {
+					size = { 46 32 }
+					text = "DECREE_KW_IF"
+				}
+
+				button_standard = {
+					size = { 46 32 }
+					text = "DECREE_KW_OR"
+				}
+
+				button_standard = {
+					size = { 46 32 }
+					text = "DECREE_KW_AND"
+				}
+
+				button_standard = {
+					size = { 56 32 }
+					text = "DECREE_KW_THEN"
+				}
+
+				button_standard = {
+					size = { 46 32 }
+					text = "DECREE_KW_IS"
+				}
+
+				button_standard = {
+					size = { 90 32 }
+					text = "DECREE_KW_LET_IT_BE"
+				}
+
+				button_standard = {
+					size = { 50 32 }
+					text = "DECREE_KW_ANY"
+				}
+
+				button_standard = {
+					size = { 50 32 }
+					text = "DECREE_KW_MIN"
+				}
+
+				button_standard = {
+					size = { 50 32 }
+					text = "DECREE_KW_MAX"
+				}
+
+				button_standard = {
+					size = { 86 32 }
+					text = "DECREE_KW_PEOPLE"
+				}
+
+				button_standard = {
+					size = { 86 32 }
+					text = "DECREE_KW_PLACES"
+				}
+
+				button_standard = {
+					size = { 96 32 }
+					text = "DECREE_KW_ATTRIBUTE"
+				}
+
+				button_standard = {
+					layoutpolicy_horizontal = expanding
+					size = { -1 32 }
+					text = "DECREE_KW_END_ORDER"
+				}
+			}
+		}
+
+		scrollbox = {
+			layoutpolicy_horizontal = expanding
+			layoutpolicy_vertical = expanding
+
+			background = {
+				using = Background_Area_Dark
+				alpha = 0.85
+			}
+
+			background = {
+				using = Background_Area_Border
+			}
+
+			blockoverride "scrollbox_content"
+			{
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					spacing = 8
+					margin = { 10 10 }
+
+					widget = {
+						layoutpolicy_horizontal = expanding
+						size = { 0 44 }
+
+						background = {
+							using = Background_Area_Light
+						}
+
+						background = {
+							using = Background_Area_Border
+						}
+
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							layoutpolicy_vertical = expanding
+							margin = { 10 4 }
+							spacing = 8
+
+							button_standard = {
+								size = { 46 28 }
+								text = "DECREE_KW_IF"
+							}
+
+							button_standard = {
+								size = { 120 28 }
+								text = "Vassals"
+							}
+
+							button_standard = {
+								size = { 120 28 }
+								text = "Opinion"
+							}
+
+							button_standard = {
+								size = { 46 28 }
+								text = "DECREE_KW_IS"
+							}
+
+							button_standard = {
+								size = { 60 28 }
+								text = "< 0"
+							}
+
+							expand = {}
+
+							button_standard = {
+								size = { 56 28 }
+								text = "DECREE_KW_THEN"
+							}
+						}
+					}
+
+					widget = {
+						layoutpolicy_horizontal = expanding
+						size = { 0 44 }
+
+						background = {
+							using = Background_Area_Light
+						}
+
+						background = {
+							using = Background_Area_Border
+						}
+
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							layoutpolicy_vertical = expanding
+							margin = { 10 4 }
+							spacing = 8
+
+							button_standard = {
+								size = { 90 28 }
+								text = "DECREE_KW_LET_IT_BE"
+							}
+
+							button_standard = {
+								size = { 120 28 }
+								text = "Gold"
+							}
+
+							button_standard = {
+								size = { 60 28 }
+								text = "+ 50"
+							}
+
+							expand = {}
+
+							button_standard = {
+								size = { 200 28 }
+								text = "DECREE_KW_END_ORDER"
+							}
+						}
+					}
+
+					expand = {}
+				}
+			}
+		}
+
+		hbox = {
+			layoutpolicy_horizontal = expanding
+			margin = { 6 4 }
+
+			expand = {}
+
+			button_primary = {
+				size = { 180 42 }
+				text = "DECREE_SAVE"
+				onclick = "[GetVariableSystem.Clear('decree_editor_open')]"
+				onclick = "[GetVariableSystem.Set('decrees_window_open', 'yes')]"
+			}
+		}
+	}
+}
