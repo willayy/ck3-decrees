@@ -1,0 +1,96 @@
+types DecreeItemWidgetTypes
+{
+	type decree_item_widget = widget {
+		layoutpolicy_horizontal = expanding
+		size = { 0 64 }
+
+		background = {
+			using = Background_Area_Light
+		}
+
+		background = {
+			using = Background_Area_Border
+		}
+
+		hbox = {
+			layoutpolicy_horizontal = expanding
+			layoutpolicy_vertical = expanding
+			margin = { 10 6 }
+			spacing = 10
+
+			widget = {
+				size = { 44 48 }
+
+				icon = {
+					size = { 14 52 }
+					parentanchor = center
+					texture = "gfx/interface/colors/red.dds"
+					color = { 0.5 0.1 0.1 1 }
+
+					modify_texture = {
+						texture = "gfx/interface/component_masks/mask_fade_vertical.dds"
+						blend_mode = alphamultiply
+					}
+				}
+
+				coa_house_sigil = {
+					datacontext = "[GetPlayer]"
+					parentanchor = center
+
+					blockoverride "size"
+					{
+						size = { 40 40 }
+					}
+
+					blockoverride "sigil_size"
+					{
+						size = { 28 28 }
+					}
+				}
+			}
+
+			text_single = {
+				layoutpolicy_horizontal = expanding
+				align = left|nobaseline
+				using = Font_Type_Flavor
+				using = Font_Size_Medium
+				using = Text_Light_Background_Overrides
+				default_format = "#high"
+
+				block "decree_title"
+				{
+				}
+			}
+
+			hbox = {
+				spacing = 6
+
+				button_round = {
+					size = { 30 30 }
+					tooltip = "DECREE_EDIT"
+					using = tooltip_se
+					onclick = "[GetVariableSystem.Clear('decrees_window_open')]"
+					onclick = "[GetVariableSystem.Set('decree_editor_open', 'yes')]"
+
+					button_edit_text = {
+						size = { 18 18 }
+						parentanchor = center
+						alwaystransparent = yes
+					}
+				}
+
+				button_round = {
+					size = { 30 30 }
+					tooltip = "DECREE_DELETE"
+					using = tooltip_se
+
+					button_cancel_small = {
+						size = { 16 16 }
+						parentanchor = center
+						alwaystransparent = yes
+					}
+				}
+			}
+		}
+	}
+}
