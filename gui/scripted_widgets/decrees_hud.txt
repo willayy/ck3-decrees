@@ -1,1 +1,0 @@
-gui/decrees_hud.gui = decrees_hud_widget
