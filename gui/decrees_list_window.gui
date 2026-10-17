@@ -1,0 +1,65 @@
+window = {
+	name = "decrees_list_window"
+	parentanchor = center
+	size = { 580 500 }
+	layer = top
+	visible = "[GetVariableSystem.Exists('decrees_window_open')]"
+
+	using = Window_Background_Subwindow
+	using = Window_Decoration
+
+	state = {
+		name = _show
+		using = Animation_FadeIn_Quick
+	}
+
+	state = {
+		name = _hide
+		using = Animation_FadeOut_Quick
+	}
+
+	vbox = {
+		margin = { 10 10 }
+		spacing = 8
+
+		header_pattern = {
+			layoutpolicy_horizontal = expanding
+
+			blockoverride "header_text"
+			{
+				text = "DECREES_WINDOW_TITLE"
+			}
+
+			blockoverride "button_close"
+			{
+				onclick = "[GetVariableSystem.Clear('decrees_window_open')]"
+			}
+		}
+
+		scrollbox = {
+			layoutpolicy_horizontal = expanding
+			layoutpolicy_vertical = expanding
+
+			blockoverride "scrollbox_content"
+			{
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					spacing = 8
+				}
+			}
+		}
+
+		vbox = {
+			layoutpolicy_horizontal = expanding
+			margin = { 4 4 }
+
+			button_standard = {
+				layoutpolicy_horizontal = expanding
+				size = { -1 42 }
+				text = "DECREE_CREATE_NEW"
+				onclick = "[GetVariableSystem.Clear('decrees_window_open')]"
+				onclick = "[GetVariableSystem.Set('decree_editor_open', 'yes')]"
+			}
+		}
+	}
+}
