@@ -1,0 +1,1 @@
+"gui/decrees_list_window.gui" = decrees_list_window
