@@ -1,5 +1,5 @@
 widget = {
-	name = "decrees_hud_widget"
+	name = "decree_hud_widget"
 	parentanchor = top|right
 	position = { -48 48 }
 	size = { 45 45 }
@@ -14,6 +14,7 @@ widget = {
 		texture = "gfx/decrees_icon.png"
 		tooltip = "DECREES_BUTTON"
 		using = tooltip_ws
+		onclick = "[GetVariableSystem.Toggle('decrees_window_open')]"
 
 		modify_texture = {
 			name = "glow"
